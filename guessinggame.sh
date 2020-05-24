@@ -1,23 +1,33 @@
 #bash assignment for Unix workbench class
 
-count=$(ls -1|wc -1)
+guessing()
+{
+		
+		if [ $guess -lt `ls -1 | wc -l` ];
+		then
+		echo "Number is too low"
+		fi;
 
-function right_guess{
-	if[[$1 -lt $2]]
-	then 
-		echo "Your number is too low"
-	elif[[$1 -gt $2]]
-	then 
-		echo"Your number is too high"
-	else
-		echo""
-		echo"Congrats! Your number is right!"
-
-while [[$count -ne $guess]]
-do
-	read -"Guess number game" guess
-	#echo "you entered:$guess"
-	echo $(correct_guess $guess $count)
-	echo ""
-done
+		if [ $guess -gt `ls -1 | wc -l` ];
+		then
+		echo "Number is too high"
+		fi;
 }
+
+
+count=1
+while [ $count -ne '0' ]
+do
+echo -n "This simple program checks how many files are in the current directory"
+echo ""
+echo -n "Please enter your guess number:"
+read guess 
+if [ $guess -eq `ls -1 | wc -l` ];
+		then
+		echo "Congrats! It is correct"
+		break;
+		fi;
+
+guessing $guess
+let count=count+1
+done
