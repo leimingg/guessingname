@@ -1,8 +1,15 @@
 #bash assignment for Unix workbench class
 
-FileNumber=$(ls -1 | wc -l)
+#FileNumber=$(ls -1 | wc -l)
+FileNumber=$(ls -a -1 | wc -l)
 guessing()
 {
+		re='^[0-9]+$'
+		if ! [[ $guess =~ $re ]];
+		then
+		echo "Invalid input. Please enter a valid number."
+		return;
+		fi;
 		
 		if [[ $guess -lt $FileNumber ]];
 		then
@@ -15,9 +22,8 @@ guessing()
 		fi;
 }
 
-
 count=1
-echo -n "Reminder: Use 'ls -l to check the number of files"
+echo -n "Reminder: the program was designed to count both visible and hidden files."
 echo ""
 while [ $count -ne '0' ]
 do
